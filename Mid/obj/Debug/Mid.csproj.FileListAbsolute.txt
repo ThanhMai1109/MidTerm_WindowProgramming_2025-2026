@@ -1,0 +1,10 @@
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\bin\Debug\Mid.exe.config
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\bin\Debug\Mid.exe
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\bin\Debug\Mid.pdb
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.csproj.AssemblyReference.cache
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.Form1.resources
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.Properties.Resources.resources
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.csproj.GenerateResource.cache
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.csproj.CoreCompileInputs.cache
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.exe
+C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project Midterm\Mid\Mid\obj\Debug\Mid.pdb
