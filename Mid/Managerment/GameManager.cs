@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,7 @@ namespace Mid.Managerment
     internal class GameManager
     {
         public List<Note> notes = new List<Note>();
-
-        Random rand = new Random();
+        public List<NoteData> noteDataList = new List<NoteData>();
 
         public int score;
         public int combo;
@@ -21,29 +21,51 @@ namespace Mid.Managerment
         public int goodHit;
         public int badHit;
 
-        int spawnTimer = 0;
-        int spawnInterval = 50;
+        int currentIndex = 0;
+        public int startTime;
 
-        public void SpawnNote(int panelWidth)
+        public void LoadFile(string FilePath)
         {
-            spawnTimer++;
+            noteDataList.Clear();
+            currentIndex = 0;
 
-            if (spawnTimer < spawnInterval)
-                return;
+            foreach (var line in File.ReadAllLines(FilePath))
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
 
-            spawnTimer = 0;
+                var parts = line.Split(',', ' ');
 
-            int lane = rand.Next(0, 4);
+                if (parts.Length < 2) continue;
 
-            int laneWidth = panelWidth / 4;
+                if (int.TryParse(parts[0], out int time) &&
+                    int.TryParse(parts[1], out int lane))
+                {
+                    noteDataList.Add(new NoteData
+                    {
+                        time = time,
+                        lane = lane
+                    });
+                }
+            }
+        }
 
-            Note n = new Note();
+        public void SpawnNote(int[] laneX)
+        {
+            int currentTime = Environment.TickCount - startTime;
+            int offset = 1000; // chỉnh để note rơi đúng hitline
 
-            n.lane = lane;
-            n.x = lane * laneWidth + laneWidth / 2 - n.noteWidth / 2;
-            n.y = -50;
+            while (currentIndex < noteDataList.Count && noteDataList[currentIndex].time <= currentTime + offset)
+            {
+                var data = noteDataList[currentIndex];
 
-            notes.Add(n);
+                Note n = new Note();
+                n.lane = data.lane;
+                n.x = laneX[data.lane];
+                n.y = -40;
+
+                notes.Add(n);
+                currentIndex++;
+            }
         }
 
         public void MoveNotes()
@@ -58,7 +80,7 @@ namespace Mid.Managerment
         {
             foreach (Note n in notes.ToList())
             {
-                if (n.y > hitlineY + 580)
+                if (n.y > hitlineY + 200)
                 {
                     combo = 0;
                     totalHit++;

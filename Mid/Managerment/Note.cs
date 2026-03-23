@@ -13,7 +13,12 @@ namespace Mid.Managerment
         public int x;
         public int y;
 
-        public int speed = 50;
+        public int speed = 10;
         public int noteWidth = 40;
+    }
+    internal class NoteData
+    {
+        public int lane;
+        public int time;
     }
 }

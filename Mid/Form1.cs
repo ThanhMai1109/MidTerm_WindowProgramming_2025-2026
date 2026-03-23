@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace Mid
 {
@@ -15,6 +17,7 @@ namespace Mid
     {
         GameManager game = new GameManager();
         InputManager input = new InputManager();
+        WindowsMediaPlayer p = new WindowsMediaPlayer();
 
         string hitText = "";
         int hitTextTimer = 0;
@@ -31,20 +34,26 @@ namespace Mid
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            laneX[0] = pbLane1.Left;
-            laneX[1] = pbLane2.Left;
-            laneX[2] = pbLane3.Left;
-            laneX[3] = pbLane4.Left;
+            laneX[0] = plGame.Width/4*0+20;
+            laneX[1] = plGame.Width / 4 * 1 + 20;
+            laneX[2] = plGame.Width / 4 * 2 + 20;
+            laneX[3] = plGame.Width / 4 * 3 + 20;
 
-            gameTimer.Interval = 32;
+            game.LoadFile(@"Resources/NoteLoad/AnDoMixi.txt");
+            game.startTime = Environment.TickCount;
+
+            gameTimer.Interval = 16;
             gameTimer.Start();
+
+            p.URL = @"Resources/Songs/AnDoMixi.mp3";
+            p.controls.play();
 
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            game.SpawnNote(laneX);
             game.MoveNotes();
-            game.SpawnNote(plGame.Width);
             game.RemoveMiss(pbHitline.Top);
 
             hitText = input.hitText;
@@ -100,25 +109,31 @@ namespace Mid
         {
             Graphics g = e.Graphics;
 
-            // Vẽ lane
+            // ===== lane =====
             for (int i = 1; i < 4; i++)
             {
                 int x = i * plGame.Width / 4;
                 g.DrawLine(Pens.Gray, x, 0, x, plGame.Height);
             }
 
-            // Vẽ note
+            // ===== note =====
             foreach (Note n in game.notes)
             {
-                g.FillRectangle(Brushes.White, n.x, n.y, 40, 40);
+                g.FillRectangle(Brushes.DeepSkyBlue, n.x, n.y, 40, 40);
             }
 
-            // Vẽ hit text
+            // ===== hit text =====
             if (hitText != "")
             {
-                Font f = new Font("Arial", 26, FontStyle.Bold);
+                Font f = new Font("Arial", 24, FontStyle.Bold);
 
-                g.DrawString(hitText,f, Brushes.White,plGame.Width / 2 - 60,pbHitline.Top - 80);
+                g.DrawString(
+                    hitText,
+                    f,
+                    Brushes.White,
+                    plGame.Width / 2 - 60,
+                    pbHitline.Top - 80
+                );
             }
         }
     }

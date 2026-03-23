@@ -46,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbLane2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHitline)).BeginInit();
             this.plFix.SuspendLayout();
+            this.plGame.SuspendLayout();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -112,7 +113,7 @@
             // pbHitline
             // 
             this.pbHitline.BackColor = System.Drawing.Color.Yellow;
-            this.pbHitline.Location = new System.Drawing.Point(-3, 0);
+            this.pbHitline.Location = new System.Drawing.Point(0, 600);
             this.pbHitline.Name = "pbHitline";
             this.pbHitline.Size = new System.Drawing.Size(400, 10);
             this.pbHitline.TabIndex = 6;
@@ -135,9 +136,8 @@
             this.plFix.Controls.Add(this.pbLane4);
             this.plFix.Controls.Add(this.pbLane2);
             this.plFix.Controls.Add(this.pbLane1);
-            this.plFix.Controls.Add(this.pbHitline);
             this.plFix.Controls.Add(this.pbLane3);
-            this.plFix.Location = new System.Drawing.Point(200, 600);
+            this.plFix.Location = new System.Drawing.Point(205, 621);
             this.plFix.Name = "plFix";
             this.plFix.Size = new System.Drawing.Size(400, 120);
             this.plFix.TabIndex = 8;
@@ -145,7 +145,8 @@
             // plGame
             // 
             this.plGame.BackColor = System.Drawing.Color.Black;
-            this.plGame.Location = new System.Drawing.Point(200, 0);
+            this.plGame.Controls.Add(this.pbHitline);
+            this.plGame.Location = new System.Drawing.Point(205, 21);
             this.plGame.Name = "plGame";
             this.plGame.Size = new System.Drawing.Size(400, 600);
             this.plGame.TabIndex = 9;
@@ -157,11 +158,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(782, 753);
+            this.Controls.Add(this.plGame);
             this.Controls.Add(this.txtCombo);
             this.Controls.Add(this.txtAccuracy);
             this.Controls.Add(this.txtScore);
             this.Controls.Add(this.plFix);
-            this.Controls.Add(this.plGame);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -172,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbLane2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHitline)).EndInit();
             this.plFix.ResumeLayout(false);
+            this.plGame.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
